@@ -4,6 +4,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
 const routes = require('./routes');
+const logger = require('./utils/logger');
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -18,5 +20,6 @@ app.use(cors());
 app.use(routes);
 
 app.listen(PORT, () => {
-  console.log(`server listening on port ${PORT}`);
+  // logger.debug('debug example');
+  logger.info(`server listening on port ${PORT}`);
 });

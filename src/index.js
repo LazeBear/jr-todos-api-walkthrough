@@ -7,7 +7,9 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(morgan('dev'));
+app.use(
+  process.env.NODE_ENV === 'production' ? morgan('common') : morgan('dev')
+);
 app.use(express.json());
 app.use(cors());
 

@@ -8,7 +8,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(helmet);
+app.use(helmet());
 app.use(
   process.env.NODE_ENV === 'production' ? morgan('common') : morgan('dev')
 );

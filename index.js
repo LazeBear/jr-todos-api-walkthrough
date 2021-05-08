@@ -1,19 +1,3 @@
-const express = require('express');
-const app = express();
-app.use(express.json());
-
-/**
- * {
- *    "id": number
- *    "description": string,
- *    "done": boolean
- * }
- */
-const tasks = [];
-let id = 1;
-
-app.use(cors);
-
 app.get('/tasks', (req, res) => {
   const { description } = req.query;
   if (description) {
@@ -67,23 +51,3 @@ app.delete('/tasks/:id', parseId, (req, res) => {
   tasks.splice(taskIndex, 1);
   return res.sendStatus(204);
 });
-
-app.listen(3000, () => {
-  console.log(`server listening on port 3000`);
-});
-
-function parseId(req, res, next) {
-  let { id } = req.params;
-  req.params.id = Number(id);
-  next();
-}
-
-function cors(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, DELETE'
-  );
-  res.setHeader('Access-Control-Allow-Headers', 'content-type');
-  next();
-}
